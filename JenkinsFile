@@ -4,17 +4,25 @@ pipeline {
   tools {nodejs "NodeJs"}
     
   stages {
-        
+    
+   
+
     stage('Git') {
       steps {
         git 'https://github.com/muzeke/jenkins_lab01.git'
       }
+      
     }
      
     stage('Build') {
+
+        
       steps {
-        sh 'npm install'
+         nodejs(nodeJSInstallationName: 'Node 18.x') {
+          sh 'npm install'
          sh 'npm run build'
+    }
+        
       }
     }  
   }
